@@ -50,6 +50,12 @@ function LoginScreen(): JSX.Element {
 
   const hasAuthorization = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
+  const hanleButtonClick = () => {
+    if (hasAuthorization) {
+      navigate(-1);
+    }
+  };
+
   if (hasAuthorization) {
     return <Navigate to={route}/>;
   }
@@ -108,7 +114,7 @@ function LoginScreen(): JSX.Element {
                 <button className="btn btn--accent btn--general login-form__submit"
                   type="submit"
                   disabled={!isValid || isLoginStatusLoading}
-                  onClick={() => navigate(-1)}
+                  onClick={hanleButtonClick}
                 >
                   {isLoginStatusLoading ? 'В процессе...' : 'Войти'}
                 </button>
